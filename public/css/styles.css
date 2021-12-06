@@ -1,0 +1,166 @@
+.top{
+  background: rgb(244,160,225);
+  background: linear-gradient(0deg, rgba(244,160,225,1) 14%, rgba(241,219,119,1) 94%);
+}
+.mid{
+  background: rgb(160,232,244);
+  background: linear-gradient(0deg, rgba(160,232,244,1) 14%, rgba(234,154,243,1) 94%);
+}
+.stockName{
+  text-align: center;
+  margin-left: 300px;
+  font-family: fantasy;
+  font-size:40px;
+  color:purple;
+}
+
+.logo{
+  height: 100px;
+  width:100px;
+  margin-left: 20px;
+  border-radius:50px;
+}
+
+.AdminB{
+  margin-left: 250px ;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.OthersB{
+  margin-left: 260px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.AdminSignUp{
+  margin-left: 320px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.AdminSize{
+  margin-top: 10px;
+  margin-left: 207px ;
+  height:200px;
+  width:200px;
+  border-radius: 50px;
+}
+
+.OthersSize{
+  margin-top: 10px;
+  margin-left: 180px;
+  height:200px;
+  width:250px;
+  border-radius:50px;
+}
+
+.sm-icon{
+  margin: 20px 10px;
+}
+.container-fluid{
+  padding: 5% 10%;
+}
+.footerposition{
+  text-align: center;
+}
+
+
+/* styling for adminlogin */
+
+body{
+  background: rgb(160,232,244);
+  background: linear-gradient(0deg, rgba(160,232,244,1) 14%, rgba(234,154,243,1) 94%);
+}
+.login-form {
+  background: #fff;
+  width: 500px;
+  margin: 65px auto;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+}
+.login-form h1 {
+  padding: 35px 35px 0 35px;
+  font-weight: 300;
+}
+.login-form .content {
+  padding: 35px;
+  text-align: center;
+}
+.login-form .input-field {
+  padding: 12px 5px;
+}
+.login-form .input-field input {
+  font-size: 16px;
+  display: block;
+  font-family: 'Rubik', sans-serif;
+  width: 100%;
+  padding: 10px 1px;
+  border: 0;
+  border-bottom: 1px solid #747474;
+  outline: none;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+.login-form .input-field input::-webkit-input-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input::-moz-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input:-ms-input-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input::-ms-input-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input::placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input:focus {
+  border-color: #222;
+}
+.login-form a.link {
+  text-decoration: none;
+  color: #000678;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-top: 20px;
+  text-underline-position: below;
+}
+.login-form .action {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+}
+.login-form .action button {
+  width: 100%;
+  border: none;
+  padding: 18px;
+  font-family: 'Rubik', sans-serif;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: 	#00b7eb;
+  color: #000;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0;
+  letter-spacing: 0.2px;
+  outline: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.login-form .action button:hover {
+  background: #00cccc;
+}
+
+
+/* styling for adminlogin */
