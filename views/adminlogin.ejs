@@ -1,20 +1,18 @@
 <%- include('partials/header1')%>
 
 <div class="login-form">
-  <form>
+  <form action="/adminlogin" method="post">
     <h1>Login</h1>
     <div class="content">
       <div class="input-field">
-        <input type="email" placeholder="Email" autocomplete="nope">
+        <input name="email" type="email" placeholder="Email" autocomplete="email">
       </div>
       <div class="input-field">
-        <input type="password" placeholder="Password" autocomplete="new-password">
+        <input name="password" type="password" placeholder="Password" autocomplete="new-password">
       </div>
       <a href="#" class="link">Forgot Your Password?</a>
     </div>
-    <div class="action">
-      <button>Sign in</button>
-    </div>
+    <button class="signinB" type="submit">Sign in</button>
   </form>
 </div>
 
