@@ -1,0 +1,45 @@
+<%- include('partials/header1')%>
+
+
+<div class="admindetails">
+
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+
+  <h1>Admin Details</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">AdminID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Email Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%adminlist.forEach(admin =>{%>
+        <tr>
+          <th scope="row"><%= admin.Admin_id %></th>
+          <td><%= admin.first_name %></td>
+          <td><%= admin.last_name %></td>
+          <td><%= admin.Designation %></td>
+          <td><%= admin.email %></td>
+        </tr>
+      <%})%>
+    </tbody>
+  </table>
+
+</div>
+
+<%- include('partials/footer1')%>
