@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect("mongodb://localhost:27017/stockDB",
   {useNewUrlParser:true},{useUnifiedTopology:true}
 );
+
 const registerSchema = new mongoose.Schema({
   first_name:{ type : String, required : true, max : [127, "Max Length is 127 characters"]},
   last_name:{ type : String, required : true, max : [127, "Max Length is 127 characters"]},
@@ -24,7 +25,6 @@ const registerSchema = new mongoose.Schema({
 });
 
 const Register = mongoose.model("Register",registerSchema);
-
 
 app.get('/', function(req, res){
   res.render("index");
@@ -45,6 +45,30 @@ app.get('/admindetails',function(req, res){
     });
   });
 });
+app.get('/addadmin',function(req, res){//from this webpage to
+  res.render('addadmin');// this webpage.
+});
+
+app.post('/admindetails',function(req,res){
+  const newAdmin = new Register({
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    Designation: req.body.Designation,
+    email: req.body.email,
+    password: req.body.password,
+    confirm_password: req.body.password,
+    Admin_id: req.body.Admin_id,
+    contact_no: req.body.contact_no
+  });
+  newAdmin.save(function (err){
+    if (err){
+      console.log(err);
+    }else{
+      res.redirect('/admindetails');
+    }
+  });
+})
+
 app.post('/adminsignup',function(req, res){
   const newRegister = new Register({
     first_name: req.body.first_name,
