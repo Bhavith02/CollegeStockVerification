@@ -3,45 +3,61 @@
 
 <div class="admindetails">
 
-    <div class="topnav">
-      <form  action="/addadmin" method="post">
-        <a class="active" role="button" href="/addadmin">ADD</a>
-      </form>
-
-      <a href="#about">REMOVE</a>
-      <a href="#contact">EDIT</a>
-      <div class="search-container">
-        <form action="/action_page.php">
-          <input type="text" placeholder="Search.." name="search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-      </div>
+  </form>
+    <div class=" adminHeading">
+      <h1 >Admin Details</h1>
     </div>
 
-  <h1>Admin Details</h1>
+    <div class="newadmintext">
+      <form  action="/addadmin" method="post">
+        <a href="/addadmin"class="border-shadow addbutton"
+        <span class="text-gradient" role="button">New Admin<i class="fas fa-user"></i></span>
+      </a>
+    </div>
+    <div class="topnav search-container">
+      <form action="/action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">AdminID</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Designation</th>
-        <th scope="col">Email Address</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%adminlist.forEach(admin =>{%>
-        <tr>
-          <th scope="row"><%= admin.Admin_id %></th>
-          <td><%= admin.first_name %></td>
-          <td><%= admin.last_name %></td>
-          <td><%= admin.Designation %></td>
-          <td><%= admin.email %></td>
-        </tr>
-      <%})%>
-    </tbody>
-  </table>
+    <form action="/" method="post">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">AdminID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%adminlist.forEach(admin =>{%>
+            <tr>
+              <th scope="row"><%= admin.Admin_id %></th>
+              <td><%= admin.first_name %></td>
+              <td><%= admin.last_name %></td>
+              <td><%= admin.Designation %></td>
+              <td><%= admin.email %></td>
+              <td>
+                <a href="/update_admin?id=<%= admin._id %>" class="btn border-shadow update">
+                  <span class="text-gradient"> <i class="fas fa-pencil-alt"></i></span>
+                </a>
+                <a class="btn border-shadow delete" data-id =<%=admin._id%> >
+                  <span class="text-gradient"> <i class="fas fa-times"></i></span>
+                </a>
+              </td>
+            </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </form>
+
+
+
 
 </div>
 

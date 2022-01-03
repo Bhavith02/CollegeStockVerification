@@ -1,0 +1,115 @@
+<%- include('partials/header1')%>
+<div class="container">
+
+    <fieldset>
+    <form  method="post" id="update_admin">
+      <!-- Form Name -->
+      <legend>
+        <center>
+          <h2><b>Update Admin Details</b></h2>
+        </center>
+      </legend><br>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">First Name</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="hidden" name="id"  value="<%= admin._id %>">
+            <input name="first_name" value="<%= admin.first_name %>" placeholder="First Name" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Last Name</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="last_name" value="<%= admin.last_name %>" placeholder="Last Name" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Designation</label>
+        <div class="col-md-4 selectContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select name="Designation" class="form-control selectpicker" >
+              <option >Select your Designation</option>
+              <option >Principal</option>
+              <option >HOD</option>
+              <option >Lecturer</option>
+              <option >Lab Attendent</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">E-Mail</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="email" value="<%= admin.email %>" placeholder="E-Mail Address" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Password</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="password" value="<%= admin.password %> "placeholder="Password" class="form-control" type="password">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Confirm Password</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="confirm_password" value="<%= admin.confirm_password %>" placeholder="Confirm Password" class="form-control" type="password">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Admin ID</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="Admin_id" value="<%=admin.Admin_id%>" placeholder="Admin ID" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Contact No</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="contact" value="<%= admin.contact_no %>" placeholder="(+91)" class="form-control" type="number">
+          </div>
+        </div>
+      </div>
+      <!-- Select Basic -->
+      <!-- Success message -->
+      <!-- Button -->
+      <div class="form-group">
+        <div class="col-lg-6 Others">
+          <form action="/submit" method="post">
+            <button type="submit" class="btn btn-warning ">UPDATE</button>
+          </form>
+        </div>
+      </div>
+    </form>
+    </fieldset>
+</div>
+</div><!-- /.container -->
+
+
+<%- include('partials/footer1')%>
