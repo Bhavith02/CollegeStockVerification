@@ -4,6 +4,10 @@ $("#add_admin").submit(function(event){
   alert("Data inserted Successfully...");
 })
 
+$("#add_lab_equip").submit(function(event){
+  alert("lab equipment inserted Successfully...");
+})
+
 $("#update_admin").submit(function(event){
   event.preventDefault();
 

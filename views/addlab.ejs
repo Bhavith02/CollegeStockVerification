@@ -1,0 +1,93 @@
+<%- include('partials/header1')%>
+
+<div class="filter">
+  <a href="/LabListing"><i class="fas fa-angle-double-left">Go Back</i></a>
+</div>
+<div class="lab_listing_header">
+  <h1>Add New Lab</h1>
+</div>
+<div class="">
+  <form action="/api/lab" method="post" id="add_lab">
+    <!-- Form Name -->
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Lab ID</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input name="lab_id" placeholder="Lab ID" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Lab Name</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input name="lab_name" placeholder="Lab Name" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Room number</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input name="room_no" placeholder="Room number" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Block</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input name="block" placeholder="Block" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Floor</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input name="floor" placeholder="Date of Installation" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">Type</label>
+      <div class="col-md-4 selectContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+          <select name="type" class="form-control selectpicker" >
+            <option >Select type</option>
+            <option >Lab</option>
+            <option >Others</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!-- Select Basic -->
+    <!-- Success message -->
+    <!-- Button -->
+    <div class="form-group">
+      <div class="col-lg-6 Others">
+        <form action="/submit" method="post">
+          <button type="submit" class="btn btn-warning ">ADD</button>
+        </form>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+
+<%- include('partials/footer1')%>

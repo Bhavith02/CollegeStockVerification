@@ -1,32 +1,31 @@
 <%- include('partials/header1')%>
 
 <form action="/navigation" method="post">
+  <div class="filter">
+    <a href="/"><i class="fas fa-angle-double-left">Go Back</i></a>
+  </div>
+  <div class="lab_listing_header">
+    <h1 class="navHeading">NAVIGATE TO</h1>
+  </div>
 
-  <h1 class="navHeading">NAVIGATE TO</h1>
 
   <div class="navButton">
     <img class="img title-image navImgSize" src="/images/DPlab.png" alt="Lab img">
     <img class="img title-image navImgSize" src="/images/OSlab.png" alt="Lab img">
     <img class="img title-image navImgSize" src="/images/MPlab.png" alt="Lab img">
-    <form action="LabListing" method="post">
-      <button class="block">LABS</button>
-    </form>
+      <a class="block" href="/LabListing" role="button">LABS</a>
   </div>
 
 
   <div class="navButton">
     <img class="img title-image navImgSize CRImg" src="/images/classroom1.jpg" alt="classroom img">
     <img class="img title-image navImgSize CRImg" src="/images/classroom2.jpg" alt="classroom img">
-    <form action="ClassRoomListing" method="post">
-      <button class="block">CLASS ROOMS</button>
-    </form>
+    <a class="block" href="/ClassRoomListing" role="button">CLASS ROOMS</a>
   </div>
 
   <div class="navButton">
     <img class="img title-image navImgSize ADImg" src="/images/admin4.jpg" alt="admin img">
-    <form action="AdminDetails" method="post">
       <a class="block" href="/admindetails" role="button">ADMINS</a>
-    </form>
   </div>
 
 </form>

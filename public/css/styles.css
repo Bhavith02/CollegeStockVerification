@@ -239,6 +239,13 @@ body{
   text-align: center;
   padding:1em 0;
 }
+.adhead{
+  margin-right: 100px;
+}
+.adgoback{
+  float:left;
+}
+
 * {box-sizing: border-box;}
 
 body {
@@ -283,5 +290,54 @@ body {
 }
 
 
+/* Styling for lab listing page*/
 
+.filter{
+  display:inline-block;
+  height:100px;
+}
+.lab_listing_header{
+  text-align:center;
+  display:inline-block;
+  width:500px;
+  height:50px;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  margin:auto;
+}
+.lab{
+  width:800px;
+  height:300px;
+  position:relative;
+  top:0;
+  left:0;
+  right:0;
+  margin:auto;
+  text-align:center;
+}
+.labtable, .th2 {
+  border:1px solid grey;
+  border-collapse: collapse;
+  background-color: #142d4c;
+  color: #fdffcd;
+}
+.td2{
+  background-color: #fdffcd;
+  color:#142d4c;
+}
+.th2, .td2 {
+  padding:5px;
+  text-align: left;
+  width:400px;
+}
+.lab2btn{
+  border-radius: 20px;
+  background-color:#d59bf6;
+  color:#2b4450;
+}
+/*styling for labequiplist Page*/
+.newLabEquiptext{
+  text-align: center;
 }

@@ -9,7 +9,8 @@ const registerSchema = new mongoose.Schema({
   password:{type:String,required:true},
   contact:{type:Number}
 });
-
 const Register = mongoose.model("Register",registerSchema);
+
+
 
 module.exports = Register;

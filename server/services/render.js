@@ -16,6 +16,44 @@ exports.others = (req, res)=>{
   res.render("others");
 }
 
+exports.lab_Listing = (req, res)=>{
+  //make a get request to
+  axios.get('http://localhost:3000/api/lab')
+    .then(function(response){
+      res.render("LabListing",{lablist:response.data});
+    })
+    .catch(err=>{
+      res.send(err);
+    })
+}
+
+exports.add_lab = (req, res)=>{
+  res.render("addlab");
+}
+
+exports.lab_overview = (req, res)=>{
+  res.render("laboverview");
+}
+
+exports.navigation = (req, res)=>{
+  res.render("navigation");
+}
+
+exports.add_lab_equip = (req, res)=>{
+  res.render("addlabequip");
+}
+
+exports.lab_eqip_details = (req, res)=>{
+  //make a get request to
+  axios.get('http://localhost:3000/api/labequip')
+    .then(function(response){
+      res.render("labEqipdetails",{labequiplist:response.data});
+    })
+    .catch(err=>{
+      res.send(err);
+    })
+}
+
 exports.admindetails = (req, res)=>{
   //make a get request to /api/admins
   axios.get('http://localhost:3000/api/admins')

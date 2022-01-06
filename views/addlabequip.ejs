@@ -1,0 +1,95 @@
+<%- include('partials/header1')%>
+<div class="container">
+
+    <fieldset>
+    <form action="/api/labequip" method="post" id="add_lab_equip">
+      <!-- Form Name -->
+      <legend>
+        <center>
+          <h2><b>ADD New Lab Equipment</b></h2>
+        </center>
+      </legend><br>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Lab ID</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="lab_id" placeholder="Lab ID" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Item Name</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="item_name" placeholder="Item Name" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Company Name</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="company_name" placeholder="Company Name" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Model Number</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="model_no" placeholder="Model Number" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">DOI</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="doi" placeholder="Date of Installation" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Condition</label>
+        <div class="col-md-4 selectContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select name="condition" class="form-control selectpicker" >
+              <option >Select Condition</option>
+              <option >Working</option>
+              <option >Repair</option>
+              <option >Scrap</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Select Basic -->
+      <!-- Success message -->
+      <!-- Button -->
+      <div class="form-group">
+        <div class="col-lg-6 Others">
+          <form action="/submit" method="post">
+            <button type="submit" class="btn btn-warning ">ADD</button>
+          </form>
+        </div>
+      </div>
+    </form>
+    </fieldset>
+</div>
+</div><!-- /.container -->
+
+
+<%- include('partials/footer1')%>

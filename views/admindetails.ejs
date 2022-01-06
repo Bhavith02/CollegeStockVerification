@@ -3,59 +3,79 @@
 
 <div class="admindetails">
 
-  </form>
-    <div class=" adminHeading">
-      <h1 >Admin Details</h1>
-    </div>
+  <%# </form> %>
+  <%# <div class="filter">
 
-    <div class="newadmintext">
-      <form  action="/addadmin" method="post">
-        <a href="/addadmin"class="border-shadow addbutton"
-        <span class="text-gradient" role="button">New Admin<i class="fas fa-user"></i></span>
-      </a>
-    </div>
-    <div class="topnav search-container">
-      <form action="/action_page.php">
-        <input type="text" placeholder="Search.." name="search">
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
-    </div>
+  </div> %>
 
-    <form action="/" method="post">
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">AdminID</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Designation</th>
-            <th scope="col">Email Address</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
+  <div class=" adminHeading">
+    <a href="/navigation"><i class="fas fa-angle-double-left adgoback">Go Back</i></a>
+    <h1 class="adhead">Admin Details</h1>
+  </div>
 
-        <tbody>
-          <%adminlist.forEach(admin =>{%>
-            <tr>
-              <th scope="row"><%= admin.Admin_id %></th>
-              <td><%= admin.first_name %></td>
-              <td><%= admin.last_name %></td>
-              <td><%= admin.Designation %></td>
-              <td><%= admin.email %></td>
-              <td>
-                <a href="/update_admin?id=<%= admin._id %>" class="btn border-shadow update">
-                  <span class="text-gradient"> <i class="fas fa-pencil-alt"></i></span>
-                </a>
-                <a class="btn border-shadow delete" data-id =<%=admin._id%> >
-                  <span class="text-gradient"> <i class="fas fa-times"></i></span>
-                </a>
-              </td>
-            </tr>
-          <%})%>
-        </tbody>
-      </table>
-    </form>
+  <div class="newadmintext">
+    <%# <form  action="/addadmin" method="post"> %>
+    <a href="/addadmin" class="border-shadow addbutton" <span class="text-gradient" role="button">New Admin<i class="fas fa-user"></i></span>
+    </a>
+  </div>
+  <div class="topnav search-container">
+      <input type="text" placeholder="Search.." name="search" id="myInput"  onkeyup="searchAdmin()">
+      <button type="submit"><i class="fa fa-search"></i></button>
+  </div>
 
+  <%# <form action="/" method="post"> %>
+    <table class="table table-striped" id="adminTable">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">AdminID</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Email Address</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%adminlist.forEach(admin =>{%>
+        <tr>
+          <th scope="row"><%= admin.Admin_id %></th>
+          <td><%= admin.first_name %></td>
+          <td><%= admin.last_name %></td>
+          <td><%= admin.Designation %></td>
+          <td><%= admin.email %></td>
+          <td>
+            <a href="/update_admin?id=<%= admin._id %>" class="btn border-shadow update">
+              <span class="text-gradient"> <i class="fas fa-pencil-alt"></i></span>
+            </a>
+            <a class="btn border-shadow delete" data-id=<%=admin._id%>>
+              <span class="text-gradient"> <i class="fas fa-times"></i></span>
+            </a>
+          </td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+  <%# </form> %>
+
+<script>
+  const searchAdmin = () =>{
+    let filter = document.getElementById('myInput').value.toUpperCase();
+    let AdminTable = document.getElementById('adminTable');
+    let tr = AdminTable.getElementsByTagName('tr');
+    for(var i=0;i<tr.length;i++){
+      let td = tr[i].getElementsByTagName('td')[0];
+      if(td){
+        let textvalue = td.textContent||td.innerHTML;
+        if(textvalue.toUpperCase().indexOf(filter) > -1){
+          tr[i].style.display="";
+        }else{
+          tr[i].style.display="none";
+        }
+      }
+    }
+  }
+</script>
 
 
 

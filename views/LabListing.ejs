@@ -1,0 +1,71 @@
+<%- include('partials/header1')%>
+<div class="filter">
+  <a href="/navigation"><i class="fas fa-angle-double-left">Go Back</i></a>
+</div>
+<div class="lab_listing_header">
+  <h1>Lab Listing Page</h1>
+</div>
+<div class="lab">
+  <a href="/addlab"class="border-shadow addbutton"
+    <span class="text-gradient" role="button">New Lab <i class="fas fa-desktop"></i></span>
+  </a>
+  <table class=" table-striped labtable">
+    <thead class="thead-dark">
+      <tr>
+        <th class="th2" scope="col">LabID</th>
+        <th class="th2" scope="col">Name</th>
+        <th class="th2" scope="col">Room No</th>
+        <th class="th2" scope="col">Block</th>
+        <th class="th2" scope="col">Floor</th>
+        <th class="th2" scope="col">Type</th>
+        <th class="th2" scope="col">Action</th>
+        <th class="th2" scope="col">OverView</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%lablist.forEach(lab =>{%>
+      <tr>
+        <th class="td2" scope="row"><%= lab.lab_id %></th>
+        <td class="td2"><%= lab.lab_name %></td>
+        <td class="td2"><%= lab.room_no %></td>
+        <td class="td2"><%= lab.block %></td>
+        <td class="td2"><%= lab.floor %></td>
+        <td class="td2"><%= lab.type %></td>
+        <td class="td2">
+          <a href="" class="btn border-shadow update">
+            <span  class="text-gradient"> <i class="fas fa-pencil-alt"></i></span>
+          </a>
+          <a href="" class="btn border-shadow delete">
+            <span class="text-gradient"> <i class="fas fa-times"></i></span>
+          </a>
+        </td>
+        <td class="td2"><a class="btn btn-primary lab2btn" href="/laboverview" role="button">OverView</a></td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+</div>
+<%# <div class="lab">
+  <h2>DP lab</h2>
+</div>
+<div class="lab">
+  <h2>NET lab</h2>
+</div>
+<div class="lab">
+  <h2>ADE lab</h2>
+</div>
+<div class="lab">
+  <h2>RES lab</h2>
+</div>
+<div class="lab">
+  <h2>Prog lab</h2>
+</div>
+<div class="lab">
+  <h2>MP and MC lab</h2>
+</div>
+<div class="lab">
+  <h2>Proj lab</h2>
+</div> %>
+
+
+<%- include('partials/footer1')%>
