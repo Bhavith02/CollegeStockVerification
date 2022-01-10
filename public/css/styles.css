@@ -7,50 +7,42 @@
   background: linear-gradient(0deg, rgba(160,232,244,1) 14%, rgba(234,154,243,1) 94%);
 }
 .stockName{
+  padding:3%;
   text-align: center;
-  margin-left: 300px;
+  margin:auto;
   font-family: fantasy;
   font-size:40px;
   color:purple;
 }
 
 .logo{
+  position:absolute;
   height: 100px;
   width:100px;
-  margin-left: 20px;
+  margin:auto;
   border-radius:50px;
 }
 
-.AdminB{
-  margin-left: 250px ;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.OthersB{
-  margin-left: 260px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.AdminSignUp{
-  margin-left: 320px;
-  margin-bottom: 20px;
-  margin-top: 20px;
+.Admin{
+  width:50%;
+  padding:2%;
   text-align: center;
 }
 
-.AdminSize{
-  margin-top: 10px;
-  margin-left: 207px ;
-  height:200px;
-  width:200px;
-  border-radius: 50px;
+.Others{
+  width:50%;
+  padding:2%;
+  text-align: center;
 }
 
-.OthersSize{
-  margin-top: 10px;
-  margin-left: 180px;
+.AdminSignUp{
+  width:100%;
+  padding:3%;
+  text-align: center;
+}
+
+img{
+  margin-left:30%;
   height:200px;
   width:250px;
   border-radius:50px;
@@ -72,6 +64,9 @@
 body{
   background: rgb(160,232,244);
   background: linear-gradient(0deg, rgba(160,232,244,1) 14%, rgba(234,154,243,1) 94%);
+}
+.loginheader{
+  text-align: center;
 }
 .login-form {
   background: #fff;
@@ -292,6 +287,13 @@ body {
 
 /* Styling for lab listing page*/
 
+.newLabbtn{
+  text-align: center;
+}
+.lab thead th {
+  position: sticky;
+  top: 0;
+}
 .filter{
   display:inline-block;
   height:100px;
@@ -308,7 +310,8 @@ body {
   margin:auto;
 }
 .lab{
-  width:800px;
+  overflow-y: auto;
+  width:80%;
   height:300px;
   position:relative;
   top:0;

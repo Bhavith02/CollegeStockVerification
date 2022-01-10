@@ -10,4 +10,23 @@ const labequipSchema = new mongoose.Schema({
 });
 const Labequip = mongoose.model("Labequip",labequipSchema);
 
+var Wquery = Labequip.find({condition:"Working"});
+Wquery.count(function (err, count) {
+    if (err) console.log(err)
+    else {
+      var Wcount=count;
+      console.log(Wcount);
+    }
+});
+var Rquery = Labequip.find({condition:"Repair"});
+Rquery.count(function (err, count) {
+    if (err) console.log(err)
+    else console.log("Repair Count:", count)
+});
+var Squery = Labequip.find({condition:"Scrap"});
+Squery.count(function (err, count) {
+    if (err) console.log(err)
+    else console.log("Scrap Count:", count)
+});
+
 module.exports = Labequip;
