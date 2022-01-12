@@ -1,0 +1,94 @@
+<%- include('partials/header1')%>
+<div class="container">
+  <a href="/LabListing"><i class="fas fa-angle-double-left">Go Back</i></a>
+  <fieldset>
+    <form method="post" id="update_lab">
+      <!-- Form Name -->
+      <legend>
+        <center>
+          <h2><b>Update Lab Details</b></h2>
+        </center>
+      </legend><br>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Lab ID</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="hidden" name="id" value="<%= lablist._id %>">
+            <input name="lab_id" value="<%= lablist.lab_id %>" placeholder="Lab ID" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Lab Name</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="lab_name" value="<%= lablist.lab_name %>" placeholder="Lab Name" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Room number</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="room_no" value="<%= lablist.room_no %>" placeholder="Room number" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Block</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="block" value="<%= lablist.block %>" placeholder="Block" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Floor</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="floor" value="<%= lablist.floor %>" placeholder="Date of Installation" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Type</label>
+        <div class="col-md-4 selectContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select name="type" class="form-control selectpicker">
+              <option>Select type</option>
+              <option>Lab</option>
+              <option>Others</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Select Basic -->
+      <!-- Success message -->
+      <!-- Button -->
+      <div class="form-group">
+        <div class="col-lg-6 Others">
+          <form action="/submit" method="post">
+            <button type="submit" class="btn btn-warning ">UPDATE</button>
+          </form>
+        </div>
+      </div>
+    </form>
+  </fieldset>
+  </div>
+
+
+  <%- include('partials/footer1')%>

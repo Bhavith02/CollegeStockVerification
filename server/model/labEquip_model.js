@@ -15,18 +15,18 @@ Wquery.count(function (err, count) {
     if (err) console.log(err)
     else {
       var Wcount=count;
-      console.log(Wcount);
+      console.log("LE Working count:",Wcount);
     }
 });
 var Rquery = Labequip.find({condition:"Repair"});
 Rquery.count(function (err, count) {
     if (err) console.log(err)
-    else console.log("Repair Count:", count)
+    else console.log("LE Repair Count:", count)
 });
 var Squery = Labequip.find({condition:"Scrap"});
 Squery.count(function (err, count) {
     if (err) console.log(err)
-    else console.log("Scrap Count:", count)
+    else console.log("LE Scrap Count:", count)
 });
 
 module.exports = Labequip;

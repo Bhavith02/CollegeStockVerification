@@ -1,0 +1,73 @@
+<%- include('partials/header1')%>
+<div class="filter">
+  <a href="/navigation"><i class="fas fa-angle-double-left">Go Back</i></a>
+</div>
+<div class="lab_listing_header">
+  <h1>Classroom Listing Page</h1>
+</div>
+<div class="newLabbtn">
+  <a href="/addClassroom"class="border-shadow addbutton"
+    <span class="text-gradient" role="button">New classroom <i class="fas fa-desktop"></i></span>
+  </a>
+</div>
+<div class="topnav search-container ">
+    <input type="text" placeholder="Search.." name="search" id="myInput"  onkeyup="searchclass()">
+    <%# <button type="submit"><i class="fa fa-search"></i></button> %>
+</div>
+
+<div class="lab tableFixHead">
+  <table class=" table-striped labtable" id="classTable">
+    <thead class="thead-dark">
+      <tr>
+        <th class="th2" scope="col">Class Id</th>
+        <th class="th2" scope="col">Room No</th>
+        <th class="th2" scope="col">Block</th>
+        <th class="th2" scope="col">Branch</th>
+        <th class="th2" scope="col">Floor</th>
+        <th class="th2" scope="col">Type</th>
+        <th class="th2" scope="col">Action</th>
+        <th class="th2" scope="col">OverView</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%classlist.forEach(classroom =>{%>
+      <tr>
+       <th class="td2" scope="row"><%= classroom.class_id %></th>
+        <th class="td2"><%= classroom.room_no %></th>
+        <td class="td2"><%= classroom.block %></td>
+        <td class="td2"><%= classroom.branch %></td>
+        <td class="td2"><%= classroom.floor %></td>
+        <td class="td2"><%= classroom.type %></td>
+        <td class="td2">
+          <a href="/updateclass?id=<%= classroom._id %>" class="btn border-shadow update">
+            <span class="text-gradient"> <i class="fas fa-pencil-alt"></i></span>
+          </a>
+          <a class="btn border-shadow delete" data-id=<%=classroom._id%>>
+            <span class="text-gradient"> <i class="fas fa-times"></i></span>
+          </a>
+        </td>
+        <td class="td2"><a class="btn btn-primary lab2btn" href="/classoverview" role="button">OverView</a></td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+  <script>
+    const searchclass = () =>{
+      let filter = document.getElementById('myInput').value.toUpperCase();
+      let ClassTable = document.getElementById('classTable');
+      let tr = ClassTable.getElementsByTagName('tr');
+      for(var i=0;i<tr.length;i++){
+        let td = tr[i].getElementsByTagName('td')[0];
+        if(td){
+          let textvalue = td.textContent||td.innerHTML;
+          if(textvalue.toUpperCase().indexOf(filter) > -1){
+            tr[i].style.display="";
+          }else{
+            tr[i].style.display="none";
+          }
+        }
+      }
+    }
+  </script>
+</div>
+<%- include('partials/footer1')%>

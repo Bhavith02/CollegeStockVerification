@@ -1,7 +1,15 @@
+//===================REQUIRING ALL THE REQUIRED MODELS===================//
+
 var Register = require('../model/register_model');
-var Labequip = require('../model/labEquip_model');
 var Lab = require('../model/lab_model');
-//create and save new admins while registering
+var Labequip = require('../model/labEquip_model');
+var Class = require('../model/classroom_model')
+var Classequip = require('../model/classEquip_model')
+
+//========================CREATE CALL BACK FUNCTIONS========================//
+
+//-------------create and save new admins while registering---------------//
+
 exports.createR = (req, res)=>{
   //validate request
   if(!req.body){
@@ -29,7 +37,8 @@ exports.createR = (req, res)=>{
   });
 }
 
-//create and save new admins while adding
+//-----------------create and save new admins while adding---------------//
+
 exports.createA = (req, res)=>{
   //validate request
   if(!req.body){
@@ -60,8 +69,39 @@ exports.createA = (req, res)=>{
     });
   });
 }
-//creating lab equipments Details
-exports.createL = (req,res)=>{
+
+//----------------------creating lab Details-----------------------//
+
+exports.createLA = (req,res)=>{
+  if(!req.body){
+    res.status(400).send({message:"Content cannot be empty!"});
+    return;
+  }
+  //new lab
+  const newLab = new Lab({
+    lab_id: req.body.lab_id,
+    lab_name: req.body.lab_name,
+    room_no: req.body.room_no,
+    block: req.body.block,
+    floor: req.body.floor,
+    type: req.body.type
+  })
+  //saving lab in database
+  newLab
+  .save(newLab)
+  .then(data =>{
+    res.redirect("/LabListing");
+  })
+  .catch(err =>{
+    res.status(500).send({
+      message:err.message||"Some error occurred while creating a create operation"
+    });
+  });
+}
+
+//--------------------creating lab equipments Details---------------//
+
+exports.createLE = (req,res)=>{
   if(!req.body){
     res.status(400).send({message:"Content cannot be empty!"});
     return;
@@ -83,31 +123,82 @@ exports.createL = (req,res)=>{
   });
 }
 
-//creating lab Details
-exports.createLA = (req,res)=>{
+//-------------------create classroom details--------------------//
+
+exports.createCL = (req,res)=>{
   if(!req.body){
     res.status(400).send({message:"Content cannot be empty!"});
     return;
   }
-  const newLab = new Lab({
-    lab_id: req.body.lab_id,
-    lab_name: req.body.lab_name,
+  const newClass = new Class({
+    class_id:req.body.class_id,
     room_no: req.body.room_no,
     block: req.body.block,
+    branch: req.body.branch,
     floor: req.body.floor,
     type: req.body.type
   });
-  newLab.save(function (err){
+  newClass.save(function (err){
     if (err){
       console.log(err);
     }else{
-      res.redirect('/LabListing');
+      res.redirect('/ClassRoomListing');
     }
   });
 }
 
-//retrive and return all Admins /retrive and return a single admin
+//----------creating class equipments Details-----------------//
+
+exports.createCE = (req,res)=>{
+  if(!req.body){
+    res.status(400).send({message:"Content cannot be empty!"});
+    return;
+  }
+  const newClassEquip = new Classequip({
+    class_id: req.body.class_id,
+    room_no:req.body.room_no,
+    item_name: req.body.item_name,
+    company_name: req.body.company_name,
+    model_no: req.body.model_no,
+    doi: req.body.doi,
+    condition: req.body.condition
+  });
+  newClassEquip.save(function (err){
+    if (err){
+      console.log(err);
+    }else{
+      res.redirect('/classEquipdetails');
+    }
+  });
+}
+
+//====================FIND CALL BACK FUNCTIONS============================//
+
+//----------accepts login details and finds the admins in database and redirect to navigation page--------------//
+
 exports.find = (req, res)=>{
+  const username = req.body.email;
+  const password = req.body.password;
+
+  Register.findOne({email:username},function(err,foundUser){
+    if(!foundUser){
+      console.log("Admin not found!");
+    }
+    else if (err) {
+      console.log(err);
+    }else{
+      if(foundUser){
+        if(foundUser.password === password){
+          res.redirect("/navigation");
+        }
+      }
+    }
+  });
+}
+
+//------retrive and return all Admins /retrive and return a single admin-----//
+
+exports.findA = (req, res)=>{
   if(req.query.id){
     const id = req.query.id;
 
@@ -136,50 +227,22 @@ exports.find = (req, res)=>{
   }
 }
 
-//retrive and return all lab equipments /retrive and return a single lab equipment
-exports.findLE = (req, res)=>{
-  if(req.query.id){
-    const id1 = req.query.id;
+//------retrive and return all lab /retrive and return a single lab--------//
 
-    Labequip.findById(id1)
-      .then(data =>{
-        if(!data){
-          res.status(400).send({message:"Not Found equipment with id"+id1})
-        }else{
-          res.send(data)
-        }
-      })
-      .catch(err =>{
-        res.status(500).send({message:"Error retriving equipment with id"+id1});
-    });
-
-  }else{
-    Labequip.find()
-    .then(labequip =>{
-      res.send(labequip)
-    })
-    .catch(err =>{
-      res.status(500).send({
-        message:err.message||"Error occurred while retriving equipment details"
-      });
-    });
-  }
-}
-//retrive and return all lab /retrive and return a single lab
 exports.findLA = (req, res)=>{
   if(req.query.id){
-    const id2 = req.query.id;
+    const id = req.query.id;
 
-    Labequip.findById(id1)
+    Lab.findById(id)
       .then(data =>{
         if(!data){
-          res.status(400).send({message:"Not Found equipment with id"+id2})
+          res.status(400).send({message:"Not Found equipment with id"+id})
         }else{
           res.send(data)
         }
       })
       .catch(err =>{
-        res.status(500).send({message:"Error retriving equipment with id"+id2});
+        res.status(500).send({message:"Error retriving equipment with id"+id});
     });
 
   }else{
@@ -195,10 +258,105 @@ exports.findLA = (req, res)=>{
   }
 }
 
+//-----------retrive and return all lab equipments /retrive and return a single lab equipment----------//
+
+exports.findLE = (req, res)=>{
+  if(req.query.id){
+    const id = req.query.id;
+
+    Labequip.findById(id)
+      .then(data =>{
+        if(!data){
+          res.status(400).send({message:"Not Found equipment with id"+id})
+        }else{
+          res.send(data)
+        }
+      })
+      .catch(err =>{
+        res.status(500).send({message:"Error retriving equipment with id"+id});
+    });
+
+  }else{
+    Labequip.find()
+    .then(labequip =>{
+      res.send(labequip)
+    })
+    .catch(err =>{
+      res.status(500).send({
+        message:err.message||"Error occurred while retriving equipment details"
+      });
+    });
+  }
+}
+
+//-----retrive and return all class /retrive and return a single class-----//
+
+exports.findCL = (req, res)=>{
+  if(req.query.id){
+    const id = req.query.id;
+
+    Class.findById(id)
+      .then(data =>{
+        if(!data){
+          res.status(400).send({message:"Not Found equipment with id"+id})
+        }else{
+          res.send(data)
+        }
+      })
+      .catch(err =>{
+        res.status(500).send({message:"Error retriving equipment with id"+id});
+    });
+
+  }else{
+    Class.find()
+    .then(classroom =>{
+      res.send(classroom)
+    })
+    .catch(err =>{
+      res.status(500).send({
+        message:err.message||"Error occurred while retriving equipment details"
+      });
+    });
+  }
+}
+
+//--retrive and return all lab equipments/retrive and return a single equipemt-/
+
+exports.findCE = (req, res)=>{
+  if(req.query.id){
+    const id = req.query.id;
+
+    Classequip.findById(id)
+      .then(data =>{
+        if(!data){
+          res.status(400).send({message:"Not Found equipment with id"+id})
+        }else{
+          res.send(data)
+        }
+      })
+      .catch(err =>{
+        res.status(500).send({message:"Error retriving equipment with id"+id});
+    });
+
+  }else{
+    Classequip.find()
+    .then(classequip =>{
+      res.send(classequip)
+    })
+    .catch(err =>{
+      res.status(500).send({
+        message:err.message||"Error occurred while retriving equipment details"
+      });
+    });
+  }
+}
 
 
-//Update a new identified admin by admin id
-exports.update = (req, res)=>{
+//=======================UPDATE CALL BACK FUNCTIONS=========================//
+
+//--------------Update a new identified admin by admin id---------//
+
+exports.updateA = (req, res)=>{
   if(!req.body){
     return res
     .status(400)
@@ -219,8 +377,104 @@ exports.update = (req, res)=>{
   });
 }
 
-//delete a admin with specified admin id in the request
-exports.delete = (req, res)=>{
+//-------------------update identified LAB-------------------//
+
+exports.updateL =(req,res)=>{
+  if(!req.body){
+    return res
+    .status(400)
+    .send({message:"Data to be updated cannot be empty"});
+  }
+
+  const id = req.params.id;
+  Lab.findByIdAndUpdate(id,req.body,{useFindAndModify:false})
+  .then(data =>{
+    if(!data){
+      res.status(400).send({message:`Content update lab with ${id}. Maybe lab not found!`})
+    }else{
+      res.send(data)
+    }
+  })
+  .catch(err =>{
+    res.status(500).send({message:"Error Update lab information"});
+  });
+}
+
+//-------------------update identified LAB Equipment------------------//
+
+exports.updateLE =(req,res)=>{
+  if(!req.body){
+    return res
+    .status(400)
+    .send({message:"Data to be updated cannot be empty"});
+  }
+
+  const id = req.params.id;
+  Labequip.findByIdAndUpdate(id,req.body,{useFindAndModify:false})
+  .then(data =>{
+    if(!data){
+      res.status(400).send({message:`Content update lab equipment with ${id}. Maybe equipment not found!`})
+    }else{
+      res.send(data)
+    }
+  })
+  .catch(err =>{
+    res.status(500).send({message:"Error Update lab equipment information"});
+  });
+}
+
+//-------------------update identified Class-------------------//
+
+exports.updateC =(req,res)=>{
+  if(!req.body){
+    return res
+    .status(400)
+    .send({message:"Data to be updated cannot be empty"});
+  }
+
+  const id = req.params.id;
+  Class.findByIdAndUpdate(id,req.body,{useFindAndModify:false})
+  .then(data =>{
+    if(!data){
+      res.status(400).send({message:`Content update class with ${id}. Maybe class not found!`})
+    }else{
+      res.send(data)
+    }
+  })
+  .catch(err =>{
+    res.status(500).send({message:"Error Update class information"});
+  });
+}
+
+//--------------------update identified Class equipment------------------//
+
+exports.updateCE =(req,res)=>{
+  if(!req.body){
+    return res
+    .status(400)
+    .send({message:"Data to be updated cannot be empty"});
+  }
+
+  const id = req.params.id;
+  Classequip.findByIdAndUpdate(id,req.body,{useFindAndModify:false})
+  .then(data =>{
+    if(!data){
+      res.status(400).send({message:`Content update class equipment with ${id}. Maybe equipment not found!`})
+    }else{
+      res.send(data)
+    }
+  })
+  .catch(err =>{
+    res.status(500).send({message:"Error Update class equipment information"});
+  });
+}
+
+
+//==========================DELETE CALL BACK FUNCTIONS======================//
+
+//--------------delete a admin with specified admin id----------------//
+
+exports.deleteA = (req, res)=>{
   const id = req.params.id;
 
   Register.findByIdAndDelete(id)
@@ -229,40 +483,91 @@ exports.delete = (req, res)=>{
       res.status(400).send({message:`Content Delete admin with ${id}. Maybe admin id is wrong!`})
     }else{
       res.send({
-        message:"User was deleted succesfully!"
+        message:"Admin was deleted succesfully!"
       })
     }
   })
   .catch(err =>{
-    res.status(500).send({message:`Could not delete user with id ${id}.`});
+    res.status(500).send({message:`Could not delete admin with id ${id}.`});
   });
 }
 
-//accepts login details and finds the admins in database and redirect to navigation page.
-exports.findA = (req, res)=>{
-  const username = req.body.email;
-  const password = req.body.password;
+//-----------------delete a lab with specified lab id ----------------//
 
-  Register.findOne({email:username},function(err,foundUser){
-    if(!foundUser){
-      console.log("Admin not found!");
-    }
-    else if (err) {
-      console.log(err);
+exports.deleteL = (req, res)=>{
+  const id = req.params.id;
+
+  Lab.findByIdAndDelete(id)
+  .then(data =>{
+    if(!data){
+      res.status(400).send({message:`Content Delete Lab with ${id}. Maybe lab id is wrong!`})
     }else{
-      if(foundUser){
-        if(foundUser.password === password){
-          res.redirect("/navigation");
-        }
-      }
+      res.send({
+        message:"Lab was deleted succesfully!"
+      })
     }
+  })
+  .catch(err =>{
+    res.status(500).send({message:`Could not delete Lab with id ${id}.`});
   });
 }
 
-// exports.findR = (req,res)=>{
-//   Register.find({},function(err,admins){
-//   res.render("admindetails",{
-//     adminlist:admins
-//   });
-// });
-// }
+//------------delete a lab equipment with specified lab equipment----------//
+
+exports.deleteLE = (req, res)=>{
+  const id = req.params.id;
+
+  Labequip.findByIdAndDelete(id)
+  .then(data =>{
+    if(!data){
+      res.status(400).send({message:`Content Delete Lab equipment with ${id}. Maybe lab equip id is wrong!`})
+    }else{
+      res.send({
+        message:"Lab equipment was deleted succesfully!"
+      })
+    }
+  })
+  .catch(err =>{
+    res.status(500).send({message:`Could not delete Lab equipment with id ${id}.`});
+  });
+}
+
+//-------------delete a Class with specified Class id-----------------//
+
+exports.deleteC = (req, res)=>{
+  const id = req.params.id;
+
+  Class.findByIdAndDelete(id)
+  .then(data =>{
+    if(!data){
+      res.status(400).send({message:`Content Delete Class with ${id}. Maybe Class id is wrong!`})
+    }else{
+      res.send({
+        message:"Class was deleted succesfully!"
+      })
+    }
+  })
+  .catch(err =>{
+    res.status(500).send({message:`Could not delete Class with id ${id}.`});
+  });
+}
+
+//---------delete a Class equipment with specified Class equipment id---------//
+
+exports.deleteCE = (req, res)=>{
+  const id = req.params.id;
+
+  Classequip.findByIdAndDelete(id)
+  .then(data =>{
+    if(!data){
+      res.status(400).send({message:`Content Delete Class equipment with ${id}. Maybe Class equipment id is wrong!`})
+    }else{
+      res.send({
+        message:"Class equipment was deleted succesfully!"
+      })
+    }
+  })
+  .catch(err =>{
+    res.status(500).send({message:`Could not delete Class equipment with id ${id}.`});
+  });
+}

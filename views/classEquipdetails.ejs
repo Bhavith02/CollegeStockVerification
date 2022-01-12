@@ -1,0 +1,74 @@
+<%- include('partials/header1')%>
+
+<div class="filter">
+  <a href="/classoverview"><i class="fas fa-angle-double-left">Go Back</i></a>
+</div>
+<div class="lab_listing_header">
+  <h1>Classroom Equipments Details</h1>
+</div>
+<div class="newLabEquiptext">
+  <a href="/addclassequipments" class="border-shadow addbutton" <span class="text-gradient" role="button">Add New Equipment<i class="fas fa-user"></i></span>
+  </a>
+</div>
+<div class="topnav search-container ">
+    <input type="text" placeholder="Search.." name="search" id="myInput"  onkeyup="searchclassequip()">
+    <%# <button type="submit"><i class="fa fa-search"></i></button> %>
+</div>
+
+<div class="lab">
+  <table class=" table-striped labtable" id="classequipTable">
+    <thead class="thead-dark">
+      <tr>
+        <th class="th2" scope="col">Class Id</th>
+        <th class="th2" scope="col">Roomno</th>
+        <th class="th2" scope="col">Item Name</th>
+        <th class="th2" scope="col">Company Name</th>
+        <th class="th2" scope="col">Model No</th>
+        <th class="th2" scope="col">DOI</th>
+        <th class="th2" scope="col">Condition</th>
+        <th class="th2" scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%classequiplist.forEach(classequip =>{%>
+      <tr>
+        <th class="td2" scope="row"><%= classequip.class_id %></th>
+        <td class="td2"><%= classequip.room_no %></td>
+        <td class="td2"><%= classequip.item_name %></td>
+        <td class="td2"><%= classequip.company_name %></td>
+        <td class="td2"><%= classequip.model_no %></td>
+        <td class="td2"><%= classequip.doi %></td>
+        <td class="td2"><%= classequip.condition %></td>
+        <td class="td2">
+          <a href="/updateclassequip?id=<%= classequip._id %>" class="btn border-shadow update">
+            <span  class="text-gradient"> <i class="fas fa-pencil-alt"></i></span>
+          </a>
+          <a class="btn border-shadow delete" data-id=<%=classequip._id%>>
+            <span class="text-gradient"> <i class="fas fa-times"></i></span>
+          </a>
+        </td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+  <script>
+    const searchclassequip = () =>{
+      let filter = document.getElementById('myInput').value.toUpperCase();
+      let ClassequipTable = document.getElementById('classequipTable');
+      let tr = ClassequipTable.getElementsByTagName('tr');
+      for(var i=0;i<tr.length;i++){
+        let td = tr[i].getElementsByTagName('td')[1];
+        if(td){
+          let textvalue = td.textContent||td.innerHTML;
+          if(textvalue.toUpperCase().indexOf(filter) > -1){
+            tr[i].style.display="";
+          }else{
+            tr[i].style.display="none";
+          }
+        }
+      }
+    }
+  </script>
+</div>
+
+<%- include('partials/footer1')%>

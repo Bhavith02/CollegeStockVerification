@@ -1,5 +1,4 @@
 <%- include('partials/header1')%>
-
 <div class="filter">
   <a href="/laboverview"><i class="fas fa-angle-double-left">Go Back</i></a>
 </div>
@@ -10,9 +9,13 @@
   <a href="/addlabequip" class="border-shadow addbutton" <span class="text-gradient" role="button">Add New Equipment<i class="fas fa-user"></i></span>
   </a>
 </div>
+<div class="topnav search-container ">
+    <input type="text" placeholder="Search.." name="search" id="myInput"  onkeyup="searchlabequip()">
+    <%# <button type="submit"><i class="fa fa-search"></i></button> %>
+</div>
 
 <div class="lab">
-  <table class=" table-striped labtable">
+  <table class=" table-striped labtable" id="labequipTable">
     <thead class="thead-dark">
       <tr>
         <th class="th2" scope="col">ID</th>
@@ -34,10 +37,10 @@
         <td class="td2"><%= labequip.doi %></td>
         <td class="td2"><%= labequip.condition %></td>
         <td class="td2">
-          <a href="" class="btn border-shadow update">
+          <a href="/updatelabequip?id=<%= labequip._id %>" class="btn border-shadow update">
             <span  class="text-gradient"> <i class="fas fa-pencil-alt"></i></span>
           </a>
-          <a href="" class="btn border-shadow delete">
+          <a class="btn border-shadow delete"data-id=<%=labequip._id %>>
             <span class="text-gradient"> <i class="fas fa-times"></i></span>
           </a>
         </td>
@@ -45,6 +48,24 @@
       <%})%>
     </tbody>
   </table>
+  <script>
+    const searchlabequip = () =>{
+      let filter = document.getElementById('myInput').value.toUpperCase();
+      let LabequipTable = document.getElementById('labequipTable');
+      let tr = LabequipTable.getElementsByTagName('tr');
+      for(var i=0;i<tr.length;i++){
+        let td = tr[i].getElementsByTagName('td')[0];
+        if(td){
+          let textvalue = td.textContent||td.innerHTML;
+          if(textvalue.toUpperCase().indexOf(filter) > -1){
+            tr[i].style.display="";
+          }else{
+            tr[i].style.display="none";
+          }
+        }
+      }
+    }
+  </script>
 </div>
 
 <%- include('partials/footer1')%>
