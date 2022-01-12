@@ -168,3 +168,53 @@ exports.update_class_equip = (req, res) =>{
 exports.others = (req, res)=>{
   res.render("others");
 }
+
+exports.other_lab = (req, res)=>{
+  //make a get request to server to load lab details page
+  axios.get('http://localhost:3000/api/lab')
+    .then(function(response){
+      res.render("otherLab",{lablist:response.data});
+    })
+    .catch(err=>{
+      res.send(err);
+    })
+}
+
+exports.other_lab_equip = (req, res)=>{
+  //make a get request to server to load lab equipment details page
+  axios.get('http://localhost:3000/api/labequip')
+    .then(function(response){
+      res.render("otherLabequip",{labequiplist:response.data});
+    })
+    .catch(err=>{
+      res.send(err);
+    })
+}
+
+exports.other_class = (req, res)=>{
+  axios.get('http://localhost:3000/api/classroom')
+    .then(function(response){
+      res.render("otherClass",{classlist:response.data});
+    })
+    .catch(err=>{
+      res.send(err);
+    })
+}
+
+exports.other_class_equip = (req, res)=>{
+  axios.get('http://localhost:3000/api/classequip')
+    .then(function(response){
+      res.render("otherClassequip",{classequiplist:response.data});
+    })
+    .catch(err=>{
+      res.send(err);
+    })
+}
+
+exports.other_laboverview = (req, res)=>{
+  res.render("Othlaboverview");
+}
+
+exports.other_classoverview = (req, res)=>{
+  res.render("Othclassoverview");
+}

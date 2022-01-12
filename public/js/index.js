@@ -15,11 +15,11 @@ $("#add_lab_equip").submit(function(event){
 })
 
 $("#add_classroom").submit(function(event){
-  alert("lab equipment inserted Successfully...");
+  alert("Classrom inserted Successfully...");
 })
 
 $("#add_class_equip").submit(function(event){
-  alert("lab equipment inserted Successfully...");
+  alert("Classrom equipment inserted Successfully...");
 })
 
 

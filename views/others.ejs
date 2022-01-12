@@ -1,8 +1,39 @@
 <%- include('partials/header1')%>
-<form action="/others" method="post">
+<div class="othersHeading">
+  <h1 class="stockName">OTHER USERS</h1>
+</div>
+<div class="row mid">
+  <div class="col-lg-6 AdminI">
+    <img class="img title-image AdminSize" src="/images/DPlab.png" alt="Logo">
+    <a class="btn btn-primary OthersB half-out-button" href="/Othlaboverview" role="button"> Lab Overview </a>
+  </div>
+  <div class="col-lg-6 OthersI">
+    <img class="img title-image OthersSize" src="/images/OSlab.png" alt="Logo">
+  </div>
 
+  <div class=" Admin">
+      <a class="btn btn-primary AdminB" href="/otherLab" role="button">LABORATORY DETAILS</a>
+  </div>
 
-</form>
+  <div class=" Others">
+      <a class="btn btn-primary OthersB" href="/otherLabequip" role="button">LAB EQUIPMENT DETAILS</a>
+  </div>
 
+  <div class="col-lg-6 AdminI">
+    <img class="img title-image AdminSize" src="/images/classroom1.jpg" alt="Logo">
+    <a class="btn btn-primary OthersB half-out-button" href="/Othclassoverview" role="button"> Class Overview </a>
+  </div>
+  <div class="col-lg-6 OthersI">
+    <img class="img title-image OthersSize" src="/images/classroom2.jpg" alt="Logo">
+  </div>
+
+  <div class=" Admin">
+      <a class="btn btn-primary AdminB" href="/otherClass" role="button">CLASSROOM DETAILS</a>
+  </div>
+
+  <div class=" Others">
+      <a class="btn btn-primary OthersB" href="/otherClassequip" role="button">CLASS EQUIPMENT DETAILS</a>
+  </div>
+</div>
 
 <%- include('partials/footer1')%>

@@ -1,0 +1,61 @@
+<%- include('partials/header1')%>
+<div class="filter ">
+  <a href="/others"><i class="fas fa-angle-double-left">Go Back</i></a>
+</div>
+<div class="lab_listing_header">
+  <h1>Lab Listing Page</h1>
+</div>
+<div class="topnav search-container ">
+    <input type="text" placeholder="Search.." name="search" id="myInput"  onkeyup="searchlab()">
+</div>
+<div class="lab tableFixHead">
+  <table class="table-striped labtable" id="labTable">
+    <thead class="thead-dark">
+      <tr>
+        <th class="th2" scope="col">LabID</th>
+        <th class="th2" scope="col">Name</th>
+        <th class="th2" scope="col">Room No</th>
+        <th class="th2" scope="col">Block</th>
+        <th class="th2" scope="col">Floor</th>
+        <th class="th2" scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%lablist.forEach(lab =>{%>
+      <tr>
+        <th class="td2" scope="row"><%= lab.lab_id %></th>
+        <td class="td2"><%= lab.lab_name %></td>
+        <td class="td2"><%= lab.room_no %></td>
+        <td class="td2"><%= lab.block %></td>
+        <td class="td2"><%= lab.floor %></td>
+        <td class="td2"><%= lab.type %></td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+
+
+  <script>
+    const searchlab = () =>{
+      let filter = document.getElementById('myInput').value.toUpperCase();
+      let LabTable = document.getElementById('labTable');
+      let tr = LabTable.getElementsByTagName('tr');
+      for(var i=0;i<tr.length;i++){
+        let td = tr[i].getElementsByTagName('td')[0];
+        if(td){
+          let textvalue = td.textContent||td.innerHTML;
+          if(textvalue.toUpperCase().indexOf(filter) > -1){
+            tr[i].style.display="";
+          }else{
+            tr[i].style.display="none";
+          }
+        }
+      }
+    }
+  </script>
+
+</div>
+
+
+
+<%- include('partials/footer1')%>

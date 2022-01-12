@@ -40,6 +40,12 @@ route.get('/updateclassequip',services.update_class_equip);
 //=========GETTING OTHERS VIEWING RELATED PAGES FROM SERVICES FOLDER=======//
 
 route.get('/others',services.others);
+route.get('/otherLab',services.other_lab);
+route.get('/otherLabequip',services.other_lab_equip);
+route.get('/otherClass',services.other_class);
+route.get('/otherClassequip',services.other_class_equip);
+route.get('/Othlaboverview',services.other_laboverview);
+route.get('/Othclassoverview',services.other_classoverview);
 
 
 //CREATE OPERATION(creating tables) CALL BACK FUNCTION FROM CONTROLLER FOLDER//
