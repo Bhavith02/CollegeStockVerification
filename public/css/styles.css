@@ -344,6 +344,10 @@ body {
 .newLabEquiptext{
   text-align: center;
 }
+/*styling for laboverview Page*/
+.labOVFDbtn{
+  text-align: center;
+}
 /*Styling for others page*/
 .half-out-button {
   position: absolute;

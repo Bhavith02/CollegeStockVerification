@@ -11,6 +11,27 @@ const classEquipSchema = new mongoose.Schema({
 });
 const Classequip = mongoose.model("Classequip",classEquipSchema);
 
+
+const getDocument = async () =>{
+  try{
+    const result = await Classequip.find().distinct('item_name')
+    result.forEach(res =>{
+       Classequip.aggregate([{$match:{item_name:res}},{$group:{_id:"$condition",count:{$sum:1}}},{$sort:{count:-1}}],function(err,data){
+        console.log(data);
+      })
+    })
+    console.log(result);
+    // const result1 = await Labequip.find({item_name:"computer"})
+    // console.log(result1);
+
+  }catch(err){
+    console.log(err);
+  }
+}
+
+getDocument();
+
+
 var Wquery = Classequip.find({condition:"Working"});
 Wquery.count(function (err, count) {
     if (err) console.log(err)

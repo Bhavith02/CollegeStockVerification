@@ -1,6 +1,6 @@
 <%- include('partials/header1')%>
 <div class="filter">
-  <a href="/laboverview"><i class="fas fa-angle-double-left">Go Back</i></a>
+  <a href="/LabListing"><i class="fas fa-angle-double-left">Go Back</i></a>
 </div>
 <div class="lab_listing_header">
   <h1>Lab Equipments Details</h1>
@@ -13,12 +13,12 @@
     <input type="text" placeholder="Search.." name="search" id="myInput"  onkeyup="searchlabequip()">
     <%# <button type="submit"><i class="fa fa-search"></i></button> %>
 </div>
-
 <div class="lab">
   <table class=" table-striped labtable" id="labequipTable">
     <thead class="thead-dark">
       <tr>
         <th class="th2" scope="col">ID</th>
+        <th class="th2" scope="col">Lab Name</th>
         <th class="th2" scope="col">Item Name</th>
         <th class="th2" scope="col">Company Name</th>
         <th class="th2" scope="col">Model No</th>
@@ -27,24 +27,27 @@
         <th class="th2" scope="col">Action</th>
       </tr>
     </thead>
+
     <tbody>
       <%labequiplist.forEach(labequip =>{%>
-      <tr>
-        <th class="td2" scope="row"><%= labequip.lab_id %></th>
-        <td class="td2"><%= labequip.item_name %></td>
-        <td class="td2"><%= labequip.company_name %></td>
-        <td class="td2"><%= labequip.model_no %></td>
-        <td class="td2"><%= labequip.doi %></td>
-        <td class="td2"><%= labequip.condition %></td>
-        <td class="td2">
-          <a href="/updatelabequip?id=<%= labequip._id %>" class="btn border-shadow update">
-            <span  class="text-gradient"> <i class="fas fa-pencil-alt"></i></span>
-          </a>
-          <a class="btn border-shadow delete"data-id=<%=labequip._id %>>
-            <span class="text-gradient"> <i class="fas fa-times"></i></span>
-          </a>
-        </td>
-      </tr>
+          <tr>
+            <th class="td2" scope="row"><%= labequip.lab_id %></th>
+            <td class="td2"><%= labequip.lab_name %></td>
+            <td class="td2"><%= labequip.item_name %></td>
+            <td class="td2"><%= labequip.company_name %></td>
+            <td class="td2"><%= labequip.model_no %></td>
+            <td class="td2"><%= labequip.doi %></td>
+            <td class="td2"><%= labequip.condition %></td>
+            <td class="td2">
+              <a href="/updatelabequip?id=<%= labequip._id %>" class="btn border-shadow update">
+                <span  class="text-gradient"> <i class="fas fa-pencil-alt"></i></span>
+              </a>
+              <a class="btn border-shadow delete"data-id=<%=labequip._id %>>
+                <span class="text-gradient"> <i class="fas fa-times"></i></span>
+              </a>
+            </td>
+          </tr>
+
       <%})%>
     </tbody>
   </table>
@@ -66,6 +69,9 @@
       }
     }
   </script>
+</div>
+<div class="labOVFDbtn">
+  <a class="btn btn-primary lab2btn" href="/laboverview" role="button">Lab Overview</a>
 </div>
 
 <%- include('partials/footer1')%>

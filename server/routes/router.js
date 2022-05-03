@@ -23,6 +23,7 @@ route.get('/LabListing',services.lab_Listing);
 route.get('/addlab',services.add_lab);
 route.get('/updatelab',services.update_lab);
 route.get('/laboverview',services.lab_overview);
+// route.get('/laboverview',services.lab_overview1);
 route.get('/labEqipdetails',services.lab_eqip_details);
 route.get('/addlabequip',services.add_lab_equip);
 route.get('/updatelabequip',services.update_lab_equip);
@@ -42,9 +43,9 @@ route.get('/updateclassequip',services.update_class_equip);
 route.get('/others',services.others);
 route.get('/otherLab',services.other_lab);
 route.get('/otherLabequip',services.other_lab_equip);
+route.get('/Othlaboverview',services.other_laboverview);
 route.get('/otherClass',services.other_class);
 route.get('/otherClassequip',services.other_class_equip);
-route.get('/Othlaboverview',services.other_laboverview);
 route.get('/Othclassoverview',services.other_classoverview);
 
 
@@ -63,8 +64,11 @@ route.post('/adminlogin',controller.find);
 route.get('/api/admins',controller.findA);
 route.get('/api/lab',controller.findLA);
 route.get('/api/labequip',controller.findLE);
+route.get('/api/laboverview',controller.findLO);
+// route.get('/api/laboverview',controller.findLO1);
 route.get('/api/classroom',controller.findCL);
 route.get('/api/classequip',controller.findCE);
+route.get('/api/classoverview',controller.findCO);
 
 //=UPDATE OPERATION(updating particular record) C.B.F FROM CONTROLLER FOLDER=//
 

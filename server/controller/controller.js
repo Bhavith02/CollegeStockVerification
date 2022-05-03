@@ -107,6 +107,7 @@ exports.createLE = (req,res)=>{
     return;
   }
   const newLabEquip = new Labequip({
+    lab_name:req.body.lab_name,
     lab_id: req.body.lab_id,
     item_name: req.body.item_name,
     company_name: req.body.company_name,
@@ -289,6 +290,23 @@ exports.findLE = (req, res)=>{
   }
 }
 
+
+exports.findLO = (req,res)=>{
+  Labequip.find().distinct('item_name',function(err,data1){
+    res.send(data1);
+  })
+}
+
+// exports.findLO1 = (req1,res1)=>{
+//   const result = Labequip.find().distinct('item_name');
+//   result.forEach(res2 =>{
+//     Labequip.aggregate([{$match:{item_name:res2}},{$group:{_id:"$condition",count:{$sum:1}}},{$sort:{count:-1}}],function(err,data){
+//             console.log("hello:",data);
+//             res1.send(data);
+//     });
+//   })
+// }
+
 //-----retrive and return all class /retrive and return a single class-----//
 
 exports.findCL = (req, res)=>{
@@ -350,6 +368,23 @@ exports.findCE = (req, res)=>{
     });
   }
 }
+
+exports.findCO = (req,res)=>{
+  Classequip.find().distinct('item_name',function(err,data1){
+    res.send(data1);
+  })
+}
+// exports.findCO = (req,res)=>{
+//   Classequip.find()
+//   .then(classequip =>{
+//     res.send(classequip)
+//   })
+//   .catch(err =>{
+//     res.status(500).send({
+//       message:err.message||"Error occurred while retriving equipment details"
+//     });
+//   });
+// }
 
 
 //=======================UPDATE CALL BACK FUNCTIONS=========================//

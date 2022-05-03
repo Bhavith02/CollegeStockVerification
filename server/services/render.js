@@ -75,10 +75,28 @@ exports.update_lab=(req,res)=>{
       res.send(err);
     })
 }
-
 exports.lab_overview = (req, res)=>{
-  res.render("laboverview");
+  //make a get request to server to load lab equipment details page
+
+  axios.get('http://localhost:3000/api/laboverview')
+    .then(function(response){
+      res.render("laboverview",{laboverlist:response.data});
+    })
+    .catch(err=>{
+      res.send(err);
+    })
 }
+// exports.lab_overview1 = (req, res)=>{
+//   //make a get request to server to load lab equipment details page
+//
+//   axios.get('http://localhost:3000/api/laboverview1')
+//     .then(function(response){
+//       res.render("laboverview",{laboverlist1:response.data});
+//     })
+//     .catch(err=>{
+//       res.send(err);
+//     })
+// }
 
 exports.lab_eqip_details = (req, res)=>{
   //make a get request to server to load lab equipment details page
@@ -89,6 +107,7 @@ exports.lab_eqip_details = (req, res)=>{
     .catch(err=>{
       res.send(err);
     })
+
 }
 
 exports.add_lab_equip = (req, res)=>{
@@ -134,7 +153,15 @@ exports.update_class=(req,res)=>{
 }
 
 exports.class_overview = (req, res)=>{
-  res.render("classoverview");
+  //make a get request to server to load lab equipment details page
+
+  axios.get('http://localhost:3000/api/classoverview')
+    .then(function(response){
+      res.render("classoverview",{classoverlist:response.data});
+    })
+    .catch(err=>{
+      res.send(err);
+    })
 }
 
 exports.class_equip_details = (req, res)=>{
