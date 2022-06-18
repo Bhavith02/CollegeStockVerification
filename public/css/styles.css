@@ -189,9 +189,11 @@ body{
 }
 
 .block {
+  border-radius: 25px;
   display: block;
-  width: 100%;
-  border: none;
+  width: 50%;
+  margin: auto;
+  border: solid #747474;
   background-color: #ffad14;
   color:#3d0c02;
   padding: 14px 28px;
