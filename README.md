@@ -2,7 +2,7 @@
 
 steps to run this project:
 
-1.Download npm software.
+1.Download node and mongodb.
 
 2.Download zip file of this project and store it in any desired location.
 
